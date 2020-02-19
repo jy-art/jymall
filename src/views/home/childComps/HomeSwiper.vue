@@ -1,6 +1,6 @@
 <template>
-      <Swiper :interval=interval>
-        <swiper-item v-for="(item,n) in banner " :key="n">
+      <Swiper :interval=interval v-if="banner.length">
+        <swiper-item v-for="(item,n) in banner ">
           <a :href="item.link">
             <img :src="item.image" alt="" @load="imgLoad">
           </a>

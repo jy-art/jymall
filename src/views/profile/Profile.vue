@@ -1,6 +1,6 @@
 <template>
   <div id="profile">
-      hfjjk
+
   </div>
 </template>
 

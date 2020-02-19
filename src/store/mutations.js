@@ -1,12 +1,13 @@
 import * as types from './mutation-types'
 
 const mutations = {
-	[types.ADD_TO_CART](state, goods) {
-		state.cartList.push(goods)
-	},
-	[types.INCREMENT_COUNT](state, index) {
-		state.cartList[index].count += 1
-	}
+  INCREMENT_COUNT(state,oldProduct){
+    oldProduct.count +=1
+  },
+  ADD_TO_CART(state,payload){
+    payload.checked = true
+    state.cartList.push(payload)
+  }
 }
 
 

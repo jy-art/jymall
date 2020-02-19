@@ -1,6 +1,24 @@
+import {debounce} from 'common/utils.js'
 import {TOP_DISTANCE} from "./const";
 import BackTop from 'components/content/backTop/BackTop'
 import {POP, NEW, SELL} from "./const";
+
+
+export const itemListenerMixin = {
+	data(){
+    return{
+      itemImgListener:null
+		}
+	},
+	mounted(){
+    const refresh = debounce(this.$refs.scroll.refresh,200)
+    this.itemImgListener = () =>{
+      refresh()
+    }
+    this.$bus.$on('itemImgLoad',this.itemImgListener)
+
+  }
+}
 
 export const backTopMixin = {
 	components: {
@@ -8,7 +26,7 @@ export const backTopMixin = {
 	},
 	data() {
 		return {
-			showBackTop: false
+			isShow: false
 		}
 	},
 	methods: {

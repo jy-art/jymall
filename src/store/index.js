@@ -7,14 +7,15 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-	cartList: []
+	cartList: [],
 }
 
 const store = new Vuex.Store({
 	state,
+	//修改state中状态
 	mutations,
 	getters,
-	actions
+  actions
 })
 
 export default store

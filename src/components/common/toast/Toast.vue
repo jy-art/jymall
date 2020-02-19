@@ -7,10 +7,19 @@
 <script>
 	export default {
 		name: "Toast",
-    data() {
-			return {
-				isShow: false,
-        message: '我是弹窗'
+    data(){
+		  return{
+        message:'我是弹窗',
+        isShow:false
+      }
+    },
+    methods:{
+		  show(message,duration){
+		    this.isShow = true
+        this.message = message
+        setTimeout(()=>{
+          this.isShow = false
+        },duration)
       }
     }
 	}

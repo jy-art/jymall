@@ -1,6 +1,6 @@
 <template>
     <div id="hy-swiper">
-      <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+      <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" >
         <slot></slot>
       </div>
       <slot name="indicator">
@@ -19,7 +19,7 @@
     props: {
       interval: {
 		    type: Number,
-        default:3000
+        default:5000
       },
       animDuration: {
 		    type: Number,

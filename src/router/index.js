@@ -32,7 +32,7 @@ const router = new VueRouter({
       component: Profile
     },
     {
-      path: '/detail',
+      path: '/detail/:iid',
       component: Detail
     }
   ],

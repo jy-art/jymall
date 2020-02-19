@@ -56,7 +56,6 @@
         // 2.事件滚动
         if (this.probeType === 2 || this.probeType === 3) {
           this.scroll.on('scroll', position => {
-//             console.log(position);
             this.$emit('scroll', position)
           })
         }

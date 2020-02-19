@@ -17,9 +17,9 @@
      <tab-control :titles="['流行', '新款', '精选']"
                   @tabClick="tabClick"
                   ref="tabControl2"/>
-     <goods-list :goods="goods[currentType]"/>
+     <goods-list :goods="goods[currentType].list"/>
    </scroll>
-    <back-top @click.native="baClick" v-show="isShow"/>
+    <back-top @click.native="backTop" v-show="isShow"/>
   </div>
 </template>
 
@@ -37,6 +37,7 @@
 
   import {getHomeMultiData,getProductData} from 'network/home'
   import {debounce} from 'common/utils.js'
+  import {itemListenerMixin,backTopMixin} from 'common/mixin.js'
 
 
 
@@ -50,8 +51,8 @@
       TabControl,
       GoodsList,
       Scroll,
-      BackTop
     },
+    mixins:[itemListenerMixin,backTopMixin],
     data(){
       return{
         banners:[],
@@ -62,10 +63,10 @@
           'sell':{page:0,list:[]},
         },
         currentType:'pop',
-        isShow:false,
         tabOffsetTop:0,
         isTabFixed:false,
-        saveY:0
+        saveY:0,
+
 
       }
     },
@@ -75,6 +76,8 @@
     },
     deactivated(){
       this.saveY = this.$refs.scroll.getScrollY()
+
+      this.$bus.$off('itemImgLoad',this.itemImgListener)
 
     },
     created(){  //组件创建
@@ -86,14 +89,9 @@
 
 
 
+
     },
     mounted(){
-      const refresh = debounce(this.$refs.scroll.refresh,200)
-      this.$bus.$on('itemImgLoad',() =>{
-        refresh()
-      })
-
-
     },
     methods:{
 
@@ -114,12 +112,8 @@
         this.$refs.tabControl1.currentIndex = index
         this.$refs.tabControl2.currentIndex = index
       },
-      baClick(){
-        this.$refs.scroll.scrollTo(0,0,500)
-      },
       contentScroll(position){
         this.isShow = (-position.y)>1000
-
         this.isTabFixed = (-position.y) > this.tabOffsetTop
       },
       pullClick(){
