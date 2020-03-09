@@ -132,6 +132,7 @@
 
           this.banners = res.data.data.banner.list
           this.recommend = res.data.data.recommend.list
+          console.log(this.banners)
         })
       },
       getHomeGoods(type){

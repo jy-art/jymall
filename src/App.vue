@@ -1,3 +1,4 @@
+<script src="main.js"></script>
 <template>
   <div id="app">
     <keep-alive exclude="Detail">
